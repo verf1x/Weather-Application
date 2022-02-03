@@ -28,7 +28,7 @@
             <TextBlock Text="Easy Weather" FontSize="32" Foreground="#fff" 
                        Margin="20,10,10,10" Grid.ColumnSpan="2" FontFamily="Unispace"/>
 
-            <TextBlock Text="{Binding Path=WeatherModel.Weather[0].Main}" FontSize="45" Foreground="#fff" Margin="15 160 0 0"
+            <TextBlock Text="{Binding Path=WeatherModel.Weather[0].Main}" FontSize="45" Foreground="#fff" Margin="15 155 0 0"
                            HorizontalAlignment="Center" FontFamily="Cascadia Code SemiBold"/>
 
             <TextBlock Text="{Binding Path=WeatherModel.Wind.Speed, StringFormat=Wind: {0} m/s}" FontSize="30" Foreground="#fff"
