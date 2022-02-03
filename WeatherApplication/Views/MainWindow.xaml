@@ -1,0 +1,115 @@
+﻿<Window x:Class="Verf1xWeatherApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Verf1xWeatherApp"
+        xmlns:vm="clr-namespace:Verf1xWeatherApp.ViewModels"
+        mc:Ignorable="d"
+        Title="EasyWeather" Height="600" Width="1000" Icon="\Resourses\Icons\application_main_icon.ico">
+    <Window.Background>
+        <LinearGradientBrush x:Name="LinearGrad" StartPoint="0.8,0.1" EndPoint="0.5,1.2">
+            <GradientStop Color="#C505D6" Offset="1.2" />
+            <GradientStop Color="#462A8B" Offset="0.65" />
+            <GradientStop Color="#040D2C" Offset="0.1" />
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.7*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        
+        <!--1st column-->
+        <StackPanel>
+            <TextBlock Text="Easy Weather" FontSize="32" Foreground="#fff" 
+                       Margin="20,10,10,10" Grid.ColumnSpan="2" FontFamily="Unispace"/>
+
+            <TextBlock Text="{Binding Path=WeatherModel.Weather[0].Main}" FontSize="45" Foreground="#fff" Margin="15 160 0 0"
+                           HorizontalAlignment="Center" FontFamily="Cascadia Code SemiBold"/>
+
+            <TextBlock Text="{Binding Path=WeatherModel.Wind.Speed, StringFormat=Wind: {0} m/s}" FontSize="30" Foreground="#fff"
+                           HorizontalAlignment="Center" FontFamily="Cascadia Code SemiBold" Margin="0 15 0 0"/>
+        </StackPanel>
+
+
+        <!--2nd column-->
+        <StackPanel Grid.Column="1">
+            <TextBox MaxHeight="40" MaxWidth="300" VerticalAlignment="Top" FontSize="18" Margin="20,20,20,0"
+                 BorderThickness="1" Background="Transparent" Foreground="#fff" FontFamily="Cascadia Mono SemiBold"
+                 Text="{Binding SearchCityName, UpdateSourceTrigger=PropertyChanged}">
+                <TextBox.BorderBrush >
+                    <LinearGradientBrush StartPoint="-0.8,-0.1" EndPoint="-0.5,-1.2">
+                        <GradientStop Color="#C505D6" Offset="0" />
+                        <GradientStop Color="#462A8B" Offset="0.9" />
+                        <GradientStop Color="#040D2C" Offset="0.1" />
+                    </LinearGradientBrush>
+                </TextBox.BorderBrush>
+
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </TextBox.Resources>
+
+                <TextBox.InputBindings>
+                    <KeyBinding Command="{Binding SearchCommand}" Key="Return"/>
+                </TextBox.InputBindings>
+            </TextBox>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{Binding WeatherModel.Name}" HorizontalAlignment="Right" FontSize="30" Foreground="#fff" Margin="0 100 0 0"
+                           Grid.ColumnSpan="2" FontFamily="Cascadia Mono SemiBold"/>
+                <Image Grid.Column="2" Source="{Binding WeatherModel.Weather[0].IconSource}" MaxHeight="70" MaxWidth="70"
+                       Margin="0 80 0 0"/>
+            </Grid>
+
+            <TextBlock Text="{Binding Path=WeatherModel.Main.CorrectTemp}" FontSize="45" Foreground="#fff" Margin="0 20 0 0"
+                           HorizontalAlignment="Center" FontFamily="Cascadia Code SemiBold"/>
+
+            <TextBlock Text="{Binding Path=WeatherModel.Main.FeelsLike, StringFormat=Feels like: {0} °C}" FontSize="25" Foreground="#fff" Margin="0 20 0 0"
+                           HorizontalAlignment="Center" FontFamily="Cascadia Code SemiBold"/>
+
+
+        </StackPanel>
+
+        
+        <!--3rd column-->
+        <StackPanel Grid.Column="2">
+            <Button MaxHeight="50" MaxWidth="100" Content="Search" FontSize="18"
+                Background="Transparent" HorizontalAlignment="Left" Margin="-50 20 0 0" VerticalAlignment="Top"
+                Foreground="#fff" FontFamily="Cascadia Code SemiBold"
+                Command="{Binding SearchCommand}">
+                <Button.BorderBrush >
+                    <LinearGradientBrush StartPoint="-0.8,-0.1" EndPoint="-0.5,-1.2">
+                        <GradientStop Color="#C505D6" Offset="0" />
+                        <GradientStop Color="#462A8B" Offset="0.9" />
+                        <GradientStop Color="#040D2C" Offset="0.1" />
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="14"/>
+                    </Style>
+
+                </Button.Resources>
+            </Button>
+
+            <TextBlock Text="{Binding Path=WeatherModel.Main.Humidity, StringFormat=Humidity: {0}%}" FontSize="30" Foreground="#fff" Margin="0 185 0 0"
+                           HorizontalAlignment="Center" FontFamily="Cascadia Code SemiBold" Grid.Column="2"/>
+
+            <TextBlock Text="{Binding Path=WeatherModel.Main.Pressure, StringFormat=Pressure: {0} hPa}" FontSize="25" Foreground="#fff" Margin="-20 20 0 0"
+                           HorizontalAlignment="Center" FontFamily="Cascadia Code SemiBold" Grid.Column="2"/>
+        </StackPanel>
+    </Grid>
+</Window>
