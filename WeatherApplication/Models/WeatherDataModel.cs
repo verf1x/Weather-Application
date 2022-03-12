@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MvvmCross.ViewModels;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Verf1xWeatherApp.Models;
@@ -47,7 +48,7 @@ public class Main
             }
             else
             {
-                CorrectTemp = $"-{_temp} °C";
+                CorrectTemp = $"{_temp} °C";
             }
         }
     }
@@ -111,13 +112,13 @@ public class Sys
 
 }
 
-public class WeatherDataModel : ObservableObject
+public class WeatherDataModel : MvxViewModel
 {
     private Coord? _coord;
     public Coord? Coord
     {
         get => _coord;
-        set => SetValue(ref _coord, value, nameof(Coord));
+        set => SetProperty(ref _coord, value, nameof(Coord));
     }
 
 
@@ -125,7 +126,7 @@ public class WeatherDataModel : ObservableObject
     public List<Weather>? Weather
     {
         get => _weather;
-        set => SetValue(ref _weather, value, nameof(Weather));
+        set => SetProperty(ref _weather, value, nameof(Weather));
     }
 
 
@@ -133,7 +134,7 @@ public class WeatherDataModel : ObservableObject
     public Main? Main
     {
         get => _main;
-        set => SetValue(ref _main, value, nameof(Main));
+        set => SetProperty(ref _main, value, nameof(Main));
     }
 
 
@@ -141,7 +142,7 @@ public class WeatherDataModel : ObservableObject
     public Wind? Wind
     {
         get => _wind;
-        set => SetValue(ref _wind, value, nameof(Wind));
+        set => SetProperty(ref _wind, value, nameof(Wind));
     }
 
 
@@ -149,7 +150,7 @@ public class WeatherDataModel : ObservableObject
     public Sys? Sys
     {
         get => _sys;
-        set => SetValue(ref _sys, value, nameof(Sys));
+        set => SetProperty(ref _sys, value, nameof(Sys));
     }
 
 
@@ -157,6 +158,6 @@ public class WeatherDataModel : ObservableObject
     public string? Name
     {
         get => _name;
-        set => SetValue(ref _name, value, nameof(Name));
+        set => SetProperty(ref _name, value, nameof(Name));
     }
 }
