@@ -14,7 +14,7 @@ internal class WeatherService : IWeatherService
 
     #region Fields
 
-    private const string _token = "dd03c3d87712477e9c56e53221144266";
+    private const string _token = "";
     private string _cityName;
     private static readonly HttpClient _httpClient = new();
 
